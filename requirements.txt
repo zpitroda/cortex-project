@@ -1,0 +1,27 @@
+# Core Framework & Utilities
+pydantic>=2.5.0
+requests>=2.31.0
+tqdm>=4.66.0
+python-dotenv>=1.0.0
+
+# Deduplication & Hash Algorithms
+datasketch>=1.6.4
+numpy>=1.24.0
+scipy>=1.11.0
+
+# Vector Storage & Embeddings (Local RTX 5090 Acceleration)
+chromadb>=0.4.22
+sentence-transformers>=2.3.0
+torch>=2.1.0
+
+# Knowledge Graph & NLP
+networkx>=3.2.0
+spacy>=3.7.0
+
+# Document & Audio Processing (Local Transcription & Diarization)
+python-docx>=1.1.0
+pypdf>=4.0.0
+json-repair>=0.25.0
+fastapi>=0.100.0
+uvicorn>=0.23.0
+# For WhisperX on CUDA: pip install git+https://github.com/m-bain/whisperx.git
