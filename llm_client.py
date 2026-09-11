@@ -149,7 +149,11 @@ class CortexLLMClient:
             }
 
         logger.info(f"POSTing to endpoint: {self.api_url} [Mode: {self.mode}, SystemPromptLen: {len(system_prompt)}, API_KEY_LEN: {len(self.api_key)}]")
-        logger.info(f"HEADERS: {headers}")
+        sanitized_headers = {
+            k: ("***" if any(s in k.lower() for s in ["key", "auth", "token", "secret"]) else v)
+            for k, v in headers.items()
+        }
+        logger.info(f"HEADERS: {sanitized_headers}")
         return requests.post(self.api_url, headers=headers, json=payload, timeout=120)
 
     def generate_response(

@@ -12,6 +12,13 @@ from pathlib import Path
 from typing import List, Optional, Dict, Any
 from pydantic import BaseModel, Field
 
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
+
 
 class SourceTier(IntEnum):
     """
@@ -137,8 +144,8 @@ class RetrievalConfig(BaseModel):
 class LLMConfig(BaseModel):
     """Custom Claude 4.5 Sonnet and Qwen 3.8 endpoint configuration."""
     model_config = {"protected_namespaces": ()}
-    api_url: str = Field(default_factory=lambda: os.getenv("CORTEX_API_URL", "https://cnijyud3jt5gy6bis6vinan3ha0sarwf.lambda-url.us-east-2.on.aws/"))
-    api_key: str = Field(default_factory=lambda: os.getenv("CORTEX_API_KEY", "ctx_Pu2niEHPY7VPUPHBH0ey9V1SkPrtuMfV9TznO6xQJMA"))
+    api_url: str = Field(default_factory=lambda: os.getenv("CORTEX_API_URL", "https://api.cortex.bio/v1/chat/completions"))
+    api_key: str = Field(default_factory=lambda: os.getenv("CORTEX_API_KEY", ""))
     mode: str = Field(default_factory=lambda: os.getenv("CORTEX_SESSION_MODE", os.getenv("CORTEX_MODE", "")))  # Empty string defaults to scored session (199k budget)
     max_retries: int = 5
     model_name: str = Field(default_factory=lambda: os.getenv("CORTEX_MODEL_NAME", "qwen3.8"))
